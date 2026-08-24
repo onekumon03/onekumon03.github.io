@@ -55,7 +55,15 @@
   .hero{
     padding:14vh 6vw 12vh;
     max-width:1100px;
+    display:flex; align-items:center; gap:56px;
   }
+  .hero-text{flex:1; min-width:0;}
+  .hero-photo{
+    flex-shrink:0; width:180px; height:180px; border-radius:8px;
+    overflow:hidden; border:1px solid var(--line);
+    box-shadow:0 0 0 8px var(--navy-2), 0 0 0 9px var(--line);
+  }
+  .hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
   .hero .eyebrow{
     font-family:var(--mono); font-size:13px; color:var(--teal);
     letter-spacing:0.08em; text-transform:uppercase; margin-bottom:22px;
@@ -130,6 +138,15 @@
   }
   .contact-block a:hover{color:var(--amber); border-color:var(--amber);}
 
+  .resume-btn{
+    display:inline-block; margin-top:32px;
+    font-family:var(--mono); font-size:13px; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--navy); background:var(--amber);
+    text-decoration:none; padding:14px 26px; border-radius:4px;
+    transition:background .2s, transform .2s;
+  }
+  .resume-btn:hover{background:var(--teal); transform:translateY(-1px);}
+
   footer{
     padding:6vh 6vw; text-align:left; font-family:var(--mono);
     font-size:12px; color:var(--paper-dim); border-top:1px solid var(--line);
@@ -138,7 +155,8 @@
   @media (max-width: 640px){
     nav{padding:20px 5vw;}
     nav .links a{margin-left:16px;}
-    .hero{padding:10vh 5vw 8vh;}
+    .hero{padding:10vh 5vw 8vh; flex-direction:column-reverse; text-align:left; gap:32px;}
+    .hero-photo{width:130px; height:130px;}
     section{padding:7vh 5vw;}
   }
 </style>
@@ -161,6 +179,7 @@
 
 <main>
   <section class="hero" style="border-top:none;">
+    <div class="hero-text">
     <div class="eyebrow">Technical Sales &amp; Service Engineer</div>
     <h1>Ryan Cris <span class="accent">(RC)</span> Aguila</h1>
     <p class="headline">
@@ -171,6 +190,10 @@
     <div class="meta-row">
       <span>Sr. Service Engineer at <b>Quantel Global Phil Corp. — Chroma Group</b></span>
       <span>Based in <b>Quezon City, Philippines</b></span>
+    </div>
+    </div>
+    <div class="hero-photo">
+      <img src="assets/rc-photo.jpg" alt="Ryan Cris Aguila">
     </div>
   </section>
 
@@ -289,6 +312,7 @@
       <a href="mailto:onekumon03@gmail.com">Email ↗</a>
       <a href="tel:+639531734152">Phone ↗</a>
     </div>
+    <a href="assets/RC_Aguila_Resume.pdf" download class="resume-btn">Download Résumé (PDF) ↓</a>
   </section>
 </main>
 
