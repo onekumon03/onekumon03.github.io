@@ -93,10 +93,20 @@
     font-family:var(--mono); font-size:13px; color:var(--paper-dim);
   }
   .meta-row span b{color:var(--paper); font-weight:500;}
+  .explore-hint{margin-top:44px;}
+  .explore-link{
+    font-family:var(--mono); font-size:13px; color:var(--teal);
+    text-decoration:none; letter-spacing:0.04em; border-bottom:1px solid var(--teal);
+    padding-bottom:3px; transition:color .2s, border-color .2s;
+  }
+  .explore-link:hover{color:var(--amber); border-color:var(--amber);}
 
   section{
     padding:9vh 6vw; max-width:1100px; border-top:1px solid var(--line);
+    display:none;
   }
+  section.active{display:block;}
+  nav .links a.active{color:var(--amber);}
   .section-label{
     font-family:var(--mono); font-size:13px; color:var(--teal);
     letter-spacing:0.08em; text-transform:uppercase; margin-bottom:36px;
@@ -232,16 +242,18 @@
   <nav>
     <span class="mark">RC / AGUILA</span>
     <span class="links">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+      <a href="#" data-target="home" class="active">Home</a>
+      <a href="#about" data-target="about">About</a>
+      <a href="#experience" data-target="experience">Experience</a>
+      <a href="#skills" data-target="skills">Skills</a>
+      <a href="#education" data-target="education">Education</a>
+      <a href="#contact" data-target="contact">Contact</a>
     </span>
   </nav>
 </header>
 
 <main>
-  <section class="hero" style="border-top:none;">
+  <section class="hero" id="home" style="border-top:none; display:block;">
     <div class="hero-text">
     <div class="eyebrow">Technical Sales &amp; Service Engineer</div>
     <h1>Ryan cris <span class="accent">(RC)</span> Aguila</h1>
@@ -253,6 +265,9 @@
     <div class="meta-row">
       <span>Sr. Service Engineer at <b>Quantel Global Phil Corp. — Chroma Group</b></span>
       <span>Based in <b>Quezon City, Philippines</b></span>
+    </div>
+    <div class="explore-hint">
+      <a href="#about" data-target="about" class="explore-link">See full background ↓</a>
     </div>
     </div>
     <div class="hero-photo">
@@ -383,5 +398,31 @@
   © 2026 Ryan cris Aguila. Built for GitHub Pages.
 </footer>
 
+<script>
+  const navLinks = document.querySelectorAll('[data-target]');
+  const sections = document.querySelectorAll('section[id]');
+
+  function showSection(target){
+    sections.forEach(s => {
+      if(s.id === 'home'){
+        s.style.display = (target === 'home') ? 'block' : 'none';
+      } else {
+        s.classList.toggle('active', s.id === target);
+      }
+    });
+    navLinks.forEach(l => l.classList.toggle('active', l.dataset.target === target));
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      showSection(link.dataset.target);
+    });
+  });
+
+  // Start on home only
+  showSection('home');
+</script>
 </body>
 </html>
