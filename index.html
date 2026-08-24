@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ryan Cris (RC) Aguila — Engineering &amp; Technical Leadership</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #101820;
+    --navy-2: #16212c;
+    --blueprint: #1c3d5a;
+    --line: rgba(140,180,210,0.18);
+    --paper: #f2efe6;
+    --paper-dim: #cfd6da;
+    --amber: #e0a72e;
+    --teal: #4fb0a5;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--navy);
+    color:var(--paper);
+    font-family:var(--body);
+    line-height:1.6;
+  }
+  ::selection{background:var(--amber);color:var(--navy);}
+
+  /* Blueprint grid backdrop */
+  .grid-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    opacity:0.6;
+  }
+
+  header, main, footer{position:relative; z-index:1;}
+
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:28px 6vw; font-family:var(--mono); font-size:13px;
+    letter-spacing:0.05em; text-transform:uppercase;
+    border-bottom:1px solid var(--line);
+  }
+  nav .mark{color:var(--amber); font-weight:500;}
+  nav .links a{color:var(--paper-dim); text-decoration:none; margin-left:28px; transition:color .2s;}
+  nav .links a:hover{color:var(--amber);}
+
+  .hero{
+    padding:14vh 6vw 12vh;
+    max-width:1100px;
+  }
+  .hero .eyebrow{
+    font-family:var(--mono); font-size:13px; color:var(--teal);
+    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .hero .eyebrow::before{
+    content:''; width:24px; height:1px; background:var(--teal);
+  }
+  h1{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(2.4rem, 6vw, 4.6rem);
+    line-height:1.05; letter-spacing:-0.02em;
+    color:var(--paper); max-width:14ch;
+  }
+  h1 .accent{color:var(--amber);}
+  .headline{
+    margin-top:28px; font-size:clamp(1.05rem,2vw,1.3rem);
+    color:var(--paper-dim); max-width:56ch; font-weight:400;
+  }
+  .meta-row{
+    margin-top:40px; display:flex; flex-wrap:wrap; gap:14px 32px;
+    font-family:var(--mono); font-size:13px; color:var(--paper-dim);
+  }
+  .meta-row span b{color:var(--paper); font-weight:500;}
+
+  section{
+    padding:9vh 6vw; max-width:1100px; border-top:1px solid var(--line);
+  }
+  .section-label{
+    font-family:var(--mono); font-size:13px; color:var(--teal);
+    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:36px;
+    display:flex; align-items:center; gap:16px;
+  }
+  .section-label::after{content:''; flex:1; height:1px; background:var(--line);}
+
+  h2.title{
+    font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,3vw,2.2rem);
+    margin-bottom:24px;
+  }
+  .about p{color:var(--paper-dim); max-width:68ch; font-size:1.05rem;}
+
+  .placeholder-card{
+    border:1px dashed rgba(224,167,46,0.4);
+    background:rgba(224,167,46,0.04);
+    border-radius:6px;
+    padding:28px 28px;
+    margin-bottom:18px;
+  }
+  .placeholder-card .tag{
+    font-family:var(--mono); font-size:11px; color:var(--amber);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; display:block;
+  }
+  .placeholder-card p{color:var(--paper-dim); font-size:0.95rem;}
+
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:14px;
+  }
+  .skill-chip{
+    font-family:var(--mono); font-size:12.5px; text-align:center;
+    padding:14px 10px; border:1px solid var(--line); border-radius:4px;
+    color:var(--paper-dim); background:var(--navy-2);
+  }
+
+  .contact-block{
+    display:flex; flex-wrap:wrap; gap:20px 40px; margin-top:12px;
+  }
+  .contact-block a{
+    color:var(--paper); text-decoration:none; font-family:var(--mono);
+    font-size:14px; border-bottom:1px solid var(--teal); padding-bottom:2px;
+    transition:color .2s, border-color .2s;
+  }
+  .contact-block a:hover{color:var(--amber); border-color:var(--amber);}
+
+  footer{
+    padding:6vh 6vw; text-align:left; font-family:var(--mono);
+    font-size:12px; color:var(--paper-dim); border-top:1px solid var(--line);
+  }
+
+  @media (max-width: 640px){
+    nav{padding:20px 5vw;}
+    nav .links a{margin-left:16px;}
+    .hero{padding:10vh 5vw 8vh;}
+    section{padding:7vh 5vw;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<header>
+  <nav>
+    <span class="mark">RC / AGUILA</span>
+    <span class="links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </span>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" style="border-top:none;">
+    <div class="eyebrow">Technical Sales &amp; Service Engineer</div>
+    <h1>Ryan Cris <span class="accent">(RC)</span> Aguila</h1>
+    <p class="headline">
+      Transforming technical service into strategic value — turning complex
+      engineering challenges into streamlined, profitable solutions across
+      industrial automation and plastics manufacturing.
+    </p>
+    <div class="meta-row">
+      <span>Sr. Service Engineer at <b>Quantel Global Phil Corp. — Chroma Group</b></span>
+      <span>Based in <b>Quezon City, Philippines</b></span>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-label">01 — About</div>
+    <h2 class="title">Summary</h2>
+    <p style="color:var(--paper-dim); max-width:68ch; font-size:1.05rem;">
+      Experienced and results-driven professional with a strong background in
+      industrial automation, plastics manufacturing, and technical service
+      management. Expertise in overseeing market strategies, product promotion,
+      and business development in the manufacturing sector. Adept at managing
+      sales, commissioning equipment, and ensuring customer satisfaction.
+    </p>
+  </section>
+
+  <section id="experience">
+    <div class="section-label">02 — Experience</div>
+    <h2 class="title">Work History</h2>
+
+    <div class="placeholder-card" style="border-color:rgba(79,176,165,0.5); background:rgba(79,176,165,0.05);">
+      <span class="tag" style="color:var(--teal);">Current — Feb 2026 to present</span>
+      <p><b style="color:var(--paper)">Quantel Global Phil Corp. — "Chroma Group"</b><br>Sr. Service Engineer</p>
+    </div>
+
+    <div class="placeholder-card">
+      <span class="tag">Jul 2025 – Nov 2025</span>
+      <p><b style="color:var(--paper)">F&amp;B Packaging Tech Inc.</b> — After-Sales Service Supervisor</p>
+      <p style="margin-top:10px;">Led the after-sales operation for F&amp;B machinery and equipment; developed the service team to hit performance and customer satisfaction targets; oversaw service strategy, scheduling, and KPI implementation; managed key client relationships and supported the sales team on technical meetings and project handovers.</p>
+    </div>
+
+    <div class="placeholder-card">
+      <span class="tag">Jan 2024 – Jun 2025</span>
+      <p><b style="color:var(--paper)">Wittmann Battenfeld Account (Philippines)</b> — General Manager</p>
+      <p style="margin-top:10px;">Oversaw the local market for Wittmann Battenfeld products — injection molding machines, automation, and auxiliary equipment. Led sales strategy and market expansion, joined Asian regional sales meetings, and drove product promotion through exhibitions and marketing campaigns.</p>
+    </div>
+
+    <div class="placeholder-card">
+      <span class="tag">Feb 2016 – Dec 2023</span>
+      <p><b style="color:var(--paper)">AsiaQuest Ventures Corporation</b> — Technical Service Engineer / Supervisor</p>
+      <p style="margin-top:10px;">Managed the technical service department, led installation, commissioning, and training on new equipment, and oversaw after-sales repair, troubleshooting, and preventive maintenance for plastics and food processing machinery.</p>
+      <p style="margin-top:10px; color:var(--teal); font-family:var(--mono); font-size:12.5px;">Major project: led startup &amp; commissioning for the JG Summit PE &amp; PP Plant Expansion, including verification and correction of PID for a Coperion 30 T/hr conveying system.</p>
+    </div>
+
+    <div class="placeholder-card">
+      <span class="tag">Jan 2015 – Jan 2016</span>
+      <p><b style="color:var(--paper)">Aimway Plastic &amp; Printing Corp. (Donewell Plastic Corp.)</b> — OIC, Maintenance</p>
+    </div>
+
+    <div class="placeholder-card">
+      <span class="tag">Mar 2014 – Dec 2014</span>
+      <p><b style="color:var(--paper)">E.L. Laboratories Inc.</b> — Engineering Maintenance</p>
+    </div>
+
+    <div class="placeholder-card">
+      <span class="tag">Apr 2013 – Jan 2014</span>
+      <p><b style="color:var(--paper)">Pricon Microelectronics Inc.</b> — P.E. Technician</p>
+    </div>
+
+    <div class="placeholder-card">
+      <span class="tag">May 2010 – Feb 2013</span>
+      <p><b style="color:var(--paper)">Hoya Glass Disk Philippines</b> — Equipment Crew</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">03 — Skills</div>
+    <h2 class="title">Key Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-chip">General Management &amp; Business Dev.</div>
+      <div class="skill-chip">Sales &amp; Market Strategy</div>
+      <div class="skill-chip">Technical Team Leadership</div>
+      <div class="skill-chip">PLC &amp; Electrical Troubleshooting</div>
+      <div class="skill-chip">Preventive &amp; Predictive Maintenance</div>
+      <div class="skill-chip">Machinery Commissioning &amp; Installation</div>
+      <div class="skill-chip">Automation &amp; Material Handling</div>
+      <div class="skill-chip">Project Management</div>
+    </div>
+
+    <h2 class="title" style="margin-top:52px;">Machinery &amp; Systems Expertise</h2>
+    <div class="skills-grid">
+      <div class="skill-chip">Injection Molding</div>
+      <div class="skill-chip">Blow Molding</div>
+      <div class="skill-chip">Extruders</div>
+      <div class="skill-chip">Material Conveying</div>
+      <div class="skill-chip">Dosing Systems</div>
+      <div class="skill-chip">Material Dryers</div>
+      <div class="skill-chip">Thermoforming</div>
+      <div class="skill-chip">Film Blowing</div>
+      <div class="skill-chip">Industrial Chillers</div>
+      <div class="skill-chip">Air Compressors</div>
+      <div class="skill-chip">Industrial Boilers</div>
+      <div class="skill-chip">Robotics</div>
+      <div class="skill-chip">Automated Handling</div>
+      <div class="skill-chip">F&amp;B Machinery</div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-label">04 — Education</div>
+    <h2 class="title">Background</h2>
+    <div class="placeholder-card">
+      <span class="tag">June 2023</span>
+      <p><b style="color:var(--paper)">Manuel S. Enverga University Foundation</b><br>Bachelor of Science in Industrial Engineering (ETEEAP)</p>
+    </div>
+    <div class="placeholder-card">
+      <span class="tag">November 2008</span>
+      <p><b style="color:var(--paper)">Kolehiyo ng Lungsod ng Lipa (KLL)</b><br>Associate in Computer Technology</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">05 — Contact</div>
+    <h2 class="title">Get in Touch</h2>
+    <div class="contact-block">
+      <a href="https://www.linkedin.com/in/ryan-cris-aguila-5b8ba4266" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="mailto:onekumon03@gmail.com">Email ↗</a>
+      <a href="tel:+639531734152">Phone ↗</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2026 Ryan Cris Aguila. Built for GitHub Pages.
+</footer>
+
+</body>
+</html>
