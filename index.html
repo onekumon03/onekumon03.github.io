@@ -146,6 +146,30 @@
   }
   .about p{color:var(--paper-dim); max-width:68ch; font-size:1.05rem;}
 
+  .about-section{
+    position:relative; overflow:hidden;
+    padding:0 !important; max-width:none !important; border-top:none !important;
+  }
+  .about-bg{
+    position:absolute; inset:0;
+    background-size:cover; background-position:center 20%;
+    filter:grayscale(15%);
+  }
+  .about-overlay{
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, var(--navy) 0%, rgba(16,24,32,0.94) 38%, rgba(16,24,32,0.55) 100%);
+  }
+  .about-content{
+    position:relative; z-index:1;
+    padding:9vh 6vw; max-width:1100px; border-top:1px solid var(--line);
+  }
+  @media (max-width: 640px){
+    .about-overlay{
+      background:linear-gradient(180deg, rgba(16,24,32,0.55) 0%, var(--navy) 62%);
+    }
+    .about-bg{background-position:center 15%;}
+  }
+
   .timeline{position:relative; padding-left:28px;}
   .timeline::before{
     content:''; position:absolute; left:5px; top:8px; bottom:8px;
@@ -327,7 +351,10 @@
     </div>
   </section>
 
-  <section id="about">
+  <section id="about" class="about-section">
+    <div class="about-bg" style="background-image:url('rc-industrial.jpg');"></div>
+    <div class="about-overlay"></div>
+    <div class="about-content">
     <div class="section-label">01 — About</div>
     <h2 class="title">Summary</h2>
     <p style="color:var(--paper-dim); max-width:68ch; font-size:1.05rem;">
@@ -337,6 +364,7 @@
       and business development in the manufacturing sector. Adept at managing
       sales, commissioning equipment, and ensuring customer satisfaction.
     </p>
+    </div>
   </section>
 
   <section id="experience">
